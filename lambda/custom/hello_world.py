@@ -66,7 +66,7 @@ class PresentRollCallIntentHandler(AbstractRequestHandler):
 
     def handle(self, handler_input):
         # type: (HandlerInput) -> Response
-        speech_text = 'Hannah, are you here? <break time="1s"/>Ace lyn? <break time="1s"/> Mariah?<break time="1s"/> Annie?<break time="1s"/>Great! everyones here, lets get started!'
+        speech_text = 'Hannah, are you here? <break time="1s"/>Ace lyn? <break time="1s"/> Mariah?<break time="1s"/> Annie?<break time="1s"/> Great! everyones here, lets get started!'
         handler_input.response_builder.speak(speech_text).set_should_end_session(False)
         return handler_input.response_builder.response
 
