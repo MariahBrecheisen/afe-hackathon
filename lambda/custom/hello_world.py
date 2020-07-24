@@ -57,7 +57,11 @@ class StartClassIntentHandler(AbstractRequestHandler):
     def handle(self, handler_input):
         # type: (HandlerInput) -> Response
         speech_text = "Starting class"
-        handler_input.response_builder.speak(speech_text).ask(speech_text)
+        handler_input.response_builder.speak(speech_text).ask(speech_text).addDelegateDirective({
+            name: 'StateFactOfTheDayIntentHandler',
+            confirmationStatus: 'NONE',
+            slots: {}
+        })
         return handler_input.response_builder.response
 
 
