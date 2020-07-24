@@ -39,7 +39,7 @@
                     "name": "StartRollCallIntent",
                     "slots": [],
                     "samples": [
-                        "start roll call"
+                        "begin roll call"
                     ]
                 },
                 {
