@@ -76,6 +76,7 @@ class PresentRollCallIntentHandler(AbstractRequestHandler):
     def handle(self, handler_input):
         # type: (HandlerInput) -> Response
         speech_text = 'Hannah, are you here? <break time="1s"/>Ace lyn? <break time="1s"/> Mariah?<break time="1s"/> Annie?<break time="1s"/>Great! everyones here, lets get started! You can ask me for a head count at any time'
+
         handler_input.response_builder.speak(speech_text).set_should_end_session(False)
         return handler_input.response_builder.response
 
@@ -120,10 +121,6 @@ class StartRollCallIntentHandler(AbstractRequestHandler):
         for i in names:
             if (len(i) > 0): 
                 speech_text += i + " ?"
-                if response == "present":
-                    speech_text = "Hi"
-                else:
-                    speech_text = "Oooo someone's not here"
         '''
         
         handler_input.response_builder.speak(speech_text).ask(speech_text)
@@ -150,7 +147,7 @@ class CaptureRollCallResponseIntentHandler(AbstractRequestHandler):
         if response == "present":
             speech_text = "Hi"
         else:
-            speech_text = "Oooo someone's not here"
+            speech_text = "Oh that's sad"
         
         handler_input.response_builder.speak(speech_text).ask(speech_text)
         return handler_input.response_builder.response
