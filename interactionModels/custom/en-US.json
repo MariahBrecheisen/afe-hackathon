@@ -92,6 +92,19 @@
                     "samples": [
                         "present roll call"
                     ]
+                },
+                {
+                    "name": "HeadCountIntent",
+                    "slots": [],
+                    "samples": [
+                        "how many students are present",
+                        "how many are here",
+                        "how many are present today",
+                        "how many are present",
+                        "do a head count",
+                        "head count",
+                        "how many students are here"
+                    ]
                 }
             ],
             "types": [
