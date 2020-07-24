@@ -89,21 +89,14 @@ class CaptureRollCallResponseIntentHandler(AbstractRequestHandler):
         # Prints what user actually says
         # print(slots["response"].value)
         
-        print(slots["response"].resolutions.resolutions_per_authority[0])
-        print(slots["response"].resolutions.resolutions_per_authority[0].values[0])
-        print(slots["response"].resolutions.resolutions_per_authority[0].values[0].value)
-        print(slots["response"].resolutions.resolutions_per_authority[0].values[0].value.name)
-        
-        #response = slots["response"].resolutions.resolutions_per_authority[0].values[0].value.name
+        response = slots["response"].resolutions.resolutions_per_authority[0].values[0].value.name
 
-        speech_text = "hi "
+        #speech_text = "hi "
         
-        """
-        if '{}'.format(response) == "present":
+        if response == "present":
             speech_text = "Hi"
         else:
             speech_text = "Oooo someone's not here"
-        """
         
         handler_input.response_builder.speak(speech_text).ask(speech_text)
         return handler_input.response_builder.response
