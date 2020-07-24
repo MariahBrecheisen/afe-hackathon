@@ -80,6 +80,7 @@
                         }
                     ],
                     "samples": [
+                        "I am curious about {curiosity}",
                         "add {curiosity} to the list",
                         "I want to know more about {curiosity}",
                         "add {curiosity} "
