@@ -3,10 +3,12 @@
 # This sample demonstrates handling intents from an Alexa skill using the Alexa Skills Kit SDK.
 import random
 import logging
+'''
 import boto3
 import csv
 from credentials import aws_access_key_id, aws_secret_access_key
 import re
+'''
 
 from ask_sdk_core.skill_builder import SkillBuilder
 from ask_sdk_core.dispatch_components import AbstractRequestHandler
@@ -61,6 +63,7 @@ class StartClassIntentHandler(AbstractRequestHandler):
 
 class StartRollCallIntentHandler(AbstractRequestHandler):
     
+    '''
     def readS3(self):
         session = boto3.Session(
                 aws_access_key_id=aws_access_key_id,
@@ -74,6 +77,7 @@ class StartRollCallIntentHandler(AbstractRequestHandler):
         lines = response['Body'].read().decode('utf-8') 
         names = re.split('[\r\n]+', lines)
         return names
+    '''
     
     """Handler for Start Roll Call Intent."""
     def can_handle(self, handler_input):
@@ -84,8 +88,8 @@ class StartRollCallIntentHandler(AbstractRequestHandler):
         # type: (HandlerInput) -> Response
         names = self.readS3()
 
-        slots = handler_input.request_envelope.request.intent.slots
-        response = slots["response"].resolutions.resolutions_per_authority[0].values[0].value.name
+        #slots = handler_input.request_envelope.request.intent.slots
+        #response = slots["response"].resolutions.resolutions_per_authority[0].values[0].value.name
 
         speech_text = 'Starting roll call<break time="1s"/> ' + names[0] + ' ?'
 
@@ -103,7 +107,7 @@ class StartRollCallIntentHandler(AbstractRequestHandler):
         return handler_input.response_builder.response
 
 
-'''
+
 class CaptureRollCallResponseIntentHandler(AbstractRequestHandler):
     """Handler for Capture Roll Call Response Intent."""
     def can_handle(self, handler_input):
@@ -128,7 +132,7 @@ class CaptureRollCallResponseIntentHandler(AbstractRequestHandler):
         
         handler_input.response_builder.speak(speech_text).ask(speech_text)
         return handler_input.response_builder.response
-'''
+
 
 
 class StateFactOfTheDayIntentHandler(AbstractRequestHandler):
@@ -233,7 +237,7 @@ sb.add_request_handler(LaunchRequestHandler())
 sb.add_request_handler(HelloWorldIntentHandler())
 sb.add_request_handler(StartClassIntentHandler())
 sb.add_request_handler(StartRollCallIntentHandler())
-#sb.add_request_handler(CaptureRollCallResponseIntentHandler())
+sb.add_request_handler(CaptureRollCallResponseIntentHandler())
 sb.add_request_handler(StateFactOfTheDayIntentHandler())
 sb.add_request_handler(HelpIntentHandler())
 sb.add_request_handler(CancelOrStopIntentHandler())
