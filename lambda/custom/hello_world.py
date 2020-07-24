@@ -85,10 +85,17 @@ class CaptureRollCallResponseIntentHandler(AbstractRequestHandler):
     def handle(self, handler_input):
         # type: (HandlerInput) -> Response
         slots = handler_input.request_envelope.request.intent.slots
-        print(slots)
-        #response = slots["Roll_Call_Response].resolutions.resolutionsPerAuthority[].values[].value.name
+        
+        print(slots["response"].value)
+        
+        print(slots["response"].resolutions.resolutionsPerAuthority[0])
+        print(slots["response"].resolutions.resolutionsPerAuthority[0].values[0])
+        print(slots["response"].resolutions.resolutionsPerAuthority[0].values[0].value)
+        print(slots["response"].resolutions.resolutionsPerAuthority[0].values[0].value.name)
+        
+        #response = slots["response"].resolutions.resolutionsPerAuthority[0].values[0].value.name
 
-        speech_text = "hi"
+        speech_text = "hi "
         
         """
         if '{}'.format(response) == "present":
