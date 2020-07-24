@@ -109,10 +109,6 @@ class StartRollCallIntentHandler(AbstractRequestHandler):
         for i in names:
             if (len(i) > 0): 
                 speech_text += i + " ?"
-                if response == "present":
-                    speech_text = "Hi"
-                else:
-                    speech_text = "Oooo someone's not here"
         '''
         
         handler_input.response_builder.speak(speech_text).ask(speech_text)
@@ -139,7 +135,7 @@ class CaptureRollCallResponseIntentHandler(AbstractRequestHandler):
         if response == "present":
             speech_text = "Hi"
         else:
-            speech_text = "Oooo someone's not here"
+            speech_text = "Oh that's sad"
         
         handler_input.response_builder.speak(speech_text).ask(speech_text)
         return handler_input.response_builder.response
