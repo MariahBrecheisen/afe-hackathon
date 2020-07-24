@@ -86,14 +86,15 @@ class CaptureRollCallResponseIntentHandler(AbstractRequestHandler):
         # type: (HandlerInput) -> Response
         slots = handler_input.request_envelope.request.intent.slots
         
-        print(slots["response"].value)
+        # Prints what user actually says
+        # print(slots["response"].value)
         
-        print(slots["response"].resolutions.resolutionsPerAuthority[0])
-        print(slots["response"].resolutions.resolutionsPerAuthority[0].values[0])
-        print(slots["response"].resolutions.resolutionsPerAuthority[0].values[0].value)
-        print(slots["response"].resolutions.resolutionsPerAuthority[0].values[0].value.name)
+        print(slots["response"].resolutions.resolutions_per_authority[0])
+        print(slots["response"].resolutions.resolutions_per_authority[0].values[0])
+        print(slots["response"].resolutions.resolutions_per_authority[0].values[0].value)
+        print(slots["response"].resolutions.resolutions_per_authority[0].values[0].value.name)
         
-        #response = slots["response"].resolutions.resolutionsPerAuthority[0].values[0].value.name
+        #response = slots["response"].resolutions.resolutions_per_authority[0].values[0].value.name
 
         speech_text = "hi "
         
