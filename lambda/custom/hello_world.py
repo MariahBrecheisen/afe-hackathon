@@ -75,22 +75,21 @@ class PresentRollCallIntentHandler(AbstractRequestHandler):
 
     def handle(self, handler_input):
         # type: (HandlerInput) -> Response
-        speech_text = 'Hannah, are you here? <break time="1s"/>Ace lyn? <break time="1s"/> Mariah?<break time="1s"/> Annie?<break time="1s"/>Great! everyones here, lets get started! You can ask me for a head count at any time'
-
+        speech_text = 'Hannah, are you here? <break time="1s"/>Ace lyn? <break time="1s"/> Mariah?<break time="1s"/> Annie?<break time="1s"/>Great! everyones here, lets get started!'
         handler_input.response_builder.speak(speech_text).set_should_end_session(False)
         return handler_input.response_builder.response
-
-class HeadCountIntentHandler(AbstractRequestHandler):
-    """Handler for Head Count Intent."""
+        
+ class AddToRosterIntentHandler(AbstractRequestHandler):
+    """Handler for Add to Roster Intent."""
     def can_handle(self, handler_input):
         # type: (HandlerInput) -> bool
-        return is_intent_name("HeadCountIntent")(handler_input)
+        return is_intent_name("AddToRosterIntent")(handler_input)
 
     def handle(self, handler_input):
         # type: (HandlerInput) -> Response
-        speech_text = 'There are four people here today'
+        speech_text = 'Okay, Miranda Lewis has been added!'
         handler_input.response_builder.speak(speech_text).set_should_end_session(False)
-        return handler_input.response_builder.response
+        return handler_input.response_builder.response       
 
 class StartRollCallIntentHandler(AbstractRequestHandler):
     
@@ -121,6 +120,10 @@ class StartRollCallIntentHandler(AbstractRequestHandler):
         for i in names:
             if (len(i) > 0): 
                 speech_text += i + " ?"
+                if response == "present":
+                    speech_text = "Hi"
+                else:
+                    speech_text = "Oooo someone's not here"
         '''
         
         handler_input.response_builder.speak(speech_text).ask(speech_text)
@@ -147,7 +150,7 @@ class CaptureRollCallResponseIntentHandler(AbstractRequestHandler):
         if response == "present":
             speech_text = "Hi"
         else:
-            speech_text = "Oh that's sad"
+            speech_text = "Oooo someone's not here"
         
         handler_input.response_builder.speak(speech_text).ask(speech_text)
         return handler_input.response_builder.response
@@ -161,6 +164,8 @@ class StateFactOfTheDayIntentHandler(AbstractRequestHandler):
     def handle(self, handler_input):
         # type: (HandlerInput) -> Response
         facts = ["The first programmer was a woman named Ada Lovelace. She's famous for working on the Analytical Engine.", 
+                "HP, Microsoft, Apple, and Amazon all started in garages.",
+                "The computing industry boasts one of the highest starting salaries for new college graduates.",
                 "A 15-year-old once hacked NASA."]
 
         speech_text = 'The tech fact of the day is<break time="1s"/> ' + random.choice(facts)
@@ -264,8 +269,8 @@ sb = SkillBuilder()
 sb.add_request_handler(LaunchRequestHandler())
 sb.add_request_handler(HelloWorldIntentHandler())
 sb.add_request_handler(StartClassIntentHandler())
+sb.add_request_handler(AddToRosterIntentHandler())
 sb.add_request_handler(PresentRollCallIntentHandler())
-sb.add_request_handler(HeadCountIntentHandler())
 sb.add_request_handler(StartRollCallIntentHandler())
 sb.add_request_handler(CaptureRollCallResponseIntentHandler())
 sb.add_request_handler(StateFactOfTheDayIntentHandler())
