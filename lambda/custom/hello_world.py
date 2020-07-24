@@ -3,12 +3,10 @@
 # This sample demonstrates handling intents from an Alexa skill using the Alexa Skills Kit SDK.
 import random
 import logging
-'''
 import boto3
 import csv
-from credentials import aws_access_key_id, aws_secret_access_key
 import re
-'''
+import urllib.request
 
 from ask_sdk_core.skill_builder import SkillBuilder
 from ask_sdk_core.dispatch_components import AbstractRequestHandler
@@ -58,33 +56,30 @@ class StartClassIntentHandler(AbstractRequestHandler):
         # type: (HandlerInput) -> Response
         speech_text = "Starting class"
 
-        return handlerInput.responseBuilder
-            .addDelegateDirective({
-                name: 'OrderIntent',
-                confirmationStatus: 'NONE',
-                slots: {}
-            })
-            .speak("Welcome to the coffee shop.")
-            .getResponse();
+        handler_input.response_builder.speak(speech_text).ask(speech_text)
+        return handler_input.response_builder.response
+
+class PresentRollCallIntentHandler(AbstractRequestHandler):
+    """Handler for Present Roll Call Intent."""
+    def can_handle(self, handler_input):
+        # type: (HandlerInput) -> bool
+        return is_intent_name("PresentRollCallIntent")(handler_input)
+
+    def handle(self, handler_input):
+        # type: (HandlerInput) -> Response
+        speech_text = 'Hannah, are you here? <break time="1s"/>Ace lyn? <break time="1s"/> Mariah?<break time="1s"/> Annie?<break time="1s"/>Great! everyones here, lets get started!'
+        handler_input.response_builder.speak(speech_text).set_should_end_session(False)
+        return handler_input.response_builder.response
 
 
 class StartRollCallIntentHandler(AbstractRequestHandler):
     
-    '''
     def readS3(self):
-        session = boto3.Session(
-                aws_access_key_id=aws_access_key_id,
-                aws_secret_access_key=aws_secret_access_key,
-                region_name='us-east-1')
-                    
-        s3 = session.resource('s3')
-        bucket = s3.Bucket('aws-codestar-us-east-1-186841075729-afe-hackathon-pipe') 
-        bucket_obj = bucket.Object(key='test/PracticeFAQs.csv') 
-        response = bucket_obj.get()
-        lines = response['Body'].read().decode('utf-8') 
-        names = re.split('[\r\n]+', lines)
-        return names
-    '''
+        with urllib.request.urlopen("https://aws-codestar-us-east-1-186841075729-afe-hackathon-pipe.s3.amazonaws.com/test/PracticeFAQs.csv") as url: 
+            s = url.read()
+            s = s.decode('utf-8') 
+            names = re.split('[\r\n]+', s)
+            return names
     
     """Handler for Start Roll Call Intent."""
     def can_handle(self, handler_input):
@@ -93,7 +88,9 @@ class StartRollCallIntentHandler(AbstractRequestHandler):
 
     def handle(self, handler_input):
         # type: (HandlerInput) -> Response
-        #names = self.readS3()
+
+        names = self.readS3()
+        #names = ["Annie V", "Mariah B", "Acelyn C", "Hannah N"]
 
         #slots = handler_input.request_envelope.request.intent.slots
         #response = slots["response"].resolutions.resolutions_per_authority[0].values[0].value.name
@@ -156,6 +153,18 @@ class StateFactOfTheDayIntentHandler(AbstractRequestHandler):
         reprompt_text = "Would you like me to state the fact of the day?"
         
         handler_input.response_builder.speak(speech_text).ask(reprompt_text)
+        return handler_input.response_builder.response
+
+class AddCuriosityIntentHandler(AbstractRequestHandler):
+    """Handler for Add Curiosity Intent."""
+    def can_handle(self, handler_input):
+        # type: (HandlerInput) -> bool
+        return is_intent_name("AddCuriosityIntent")(handler_input)
+
+    def handle(self, handler_input):
+        # type: (HandlerInput) -> Response
+        speech_text = "Okay I have added it to the Class Curiosity Collection."
+        handler_input.response_builder.speak(speech_text).set_should_end_session(True)
         return handler_input.response_builder.response
 
 
@@ -241,9 +250,11 @@ sb = SkillBuilder()
 sb.add_request_handler(LaunchRequestHandler())
 sb.add_request_handler(HelloWorldIntentHandler())
 sb.add_request_handler(StartClassIntentHandler())
+sb.add_request_handler(PresentRollCallIntentHandler())
 sb.add_request_handler(StartRollCallIntentHandler())
 sb.add_request_handler(CaptureRollCallResponseIntentHandler())
 sb.add_request_handler(StateFactOfTheDayIntentHandler())
+sb.add_request_handler(AddCuriosityIntentHandler())
 sb.add_request_handler(HelpIntentHandler())
 sb.add_request_handler(CancelOrStopIntentHandler())
 sb.add_request_handler(SessionEndedRequestHandler())
