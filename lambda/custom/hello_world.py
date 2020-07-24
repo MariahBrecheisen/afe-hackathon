@@ -71,48 +71,6 @@ class StartRollCallIntentHandler(AbstractRequestHandler):
 
         #for i in names:
         #    speech_text += " " + i
-
-        def handle_maths(intent, session):
-        card_title = intent['name']
-    session_attributes = {}
-    
-    # #Get hold of the value passed in the slot
-    # MySlot = str(intent['slots']['MathsQuestion']['value'])
-    
-    # if MySlot == "2 plus 2":
-    #   speech_output = "The answer is four.  Why not ask me something a bit tougher?"
-    #   should_end_session = False
-    # elif MySlot == "10 plus 10":     
-    #   speech_output = "The answer is twenty.  But that's still really easy you know!" \
-    #                   "Come on!  Ask me somethimg harder!!"
-    #   should_end_session = False
-    # elif MySlot == "the square root of 4":     
-    #   speech_output = "The answer is two.  But seriously, listen buster.  I've got a brain the " \
-    #                   "size of a planet and you're asking me this easy stuff.  Try " \
-    #                   "Siri or Cortana.  That's about their level."
-    #   should_end_session = False
-    # elif MySlot == "the square root of 64":     
-    #   speech_output = "The answer is eight.  It's also minus eight but that will probably " \
-    #                   "blow your feeble human mind.  I didn't spend 3 years at AI school to "\
-    #                   "deal with this trivial rubbish.  I've a friend at number 32 who " \
-    #                   "gets asked about stuff like prime numbers and quadratic equations.  One last " \
-    #                   "chance or I'm giving up."
-    #   should_end_session = False
-    # elif MySlot == "100 divided by 0":
-    #   speech_output = "Now we're talking!!  One hundred divided by zero.  Let's see, " \
-    #                   "OK.  Er.  Um.  Er.  Just a minute.  Can't be that hard.  Buzz, buzz, " \
-    #                   "whir, whir, buzz, whir, buzz.  Oooh my brain hurts!  I know I can do this, " \
-    #                   "just give me a few minutes and I'll get back to you.  Ouch, ouch, ouch, ouch!"
-    #   should_end_session = True
-    # else:
-    #   speech_output = "Didn't understand what was passed:" + MySlot
-    #   should_end_session = False    
-        
-    
-    # reprompt_text = None
-    
-    # return build_response(session_attributes, build_speechlet_response(
-    #     card_title, speech_output, reprompt_text, should_end_session))
         
         handler_input.response_builder.speak(speech_text).ask(speech_text)
         return handler_input.response_builder.response
