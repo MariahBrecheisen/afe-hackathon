@@ -30,7 +30,7 @@ class LaunchRequestHandler(AbstractRequestHandler):
 
     def handle(self, handler_input):
         # type: (HandlerInput) -> Response
-        speech_text = "Welcome to Class Manager! What would you like to do?"
+        speech_text = "Welcome to Class Manager! You can state fact of the day or begin roll call. What would you like to do?"
         handler_input.response_builder.speak(speech_text).ask(speech_text)
         return handler_input.response_builder.response
 
@@ -107,7 +107,6 @@ class StartRollCallIntentHandler(AbstractRequestHandler):
         return handler_input.response_builder.response
 
 
-
 class CaptureRollCallResponseIntentHandler(AbstractRequestHandler):
     """Handler for Capture Roll Call Response Intent."""
     def can_handle(self, handler_input):
@@ -133,8 +132,6 @@ class CaptureRollCallResponseIntentHandler(AbstractRequestHandler):
         handler_input.response_builder.speak(speech_text).ask(speech_text)
         return handler_input.response_builder.response
 
-
-
 class StateFactOfTheDayIntentHandler(AbstractRequestHandler):
     """Handler for State Fact Of The Day Intent."""
     def can_handle(self, handler_input):
@@ -149,8 +146,9 @@ class StateFactOfTheDayIntentHandler(AbstractRequestHandler):
                 "A 15-year-old once hacked NASA."]
 
         speech_text = 'The tech fact of the day is<break time="1s"/> ' + random.choice(facts)
+        reprompt_text = "Would you like me to state the fact of the day?"
         
-        handler_input.response_builder.speak(speech_text).set_should_end_session(True)
+        handler_input.response_builder.speak(speech_text).ask(reprompt_text)
         return handler_input.response_builder.response
 
 
