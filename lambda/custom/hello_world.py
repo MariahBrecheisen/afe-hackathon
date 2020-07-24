@@ -81,7 +81,7 @@ class PresentRollCallIntentHandler(AbstractRequestHandler):
 
 
 class HeadCountIntentHandler(AbstractRequestHandler):
-        """Handler for Add to Roster Intent."""
+    """Handler for Add to Roster Intent."""
     def can_handle(self, handler_input):
         # type: (HandlerInput) -> bool
         return is_intent_name("HeadCountIntent")(handler_input)
