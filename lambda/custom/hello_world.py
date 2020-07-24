@@ -60,7 +60,13 @@ class StartRollCallIntentHandler(AbstractRequestHandler):
 
     def handle(self, handler_input):
         # type: (HandlerInput) -> Response
+        names = ["Annie V", "Mariah B", "Hannah N", "Acelyn C"]
+
         speech_text = "Starting roll call"
+
+        for i in names:
+            speech_text += " " + i
+        
         handler_input.response_builder.speak(speech_text).set_should_end_session(True)
         return handler_input.response_builder.response
 
