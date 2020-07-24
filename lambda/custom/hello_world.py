@@ -79,9 +79,12 @@ class StateFactOfTheDayIntentHandler(AbstractRequestHandler):
 
     def handle(self, handler_input):
         # type: (HandlerInput) -> Response
-        facts = ["Annie V", "Mariah B", "Hannah N", "Acelyn C"]
+        facts = ["The first programmer was a woman named Ada Lovelace. She's famous for working on the Analytical Engine.", 
+                "HP, Microsoft, Apple, and Amazon all started in garages.",
+                "The computing industry boasts one of the highest starting salaries for new college graduates.",
+                "A 15-year-old once hacked NASA."]
 
-        speech_text = "Here is the fact of the day: " + random.choice(facts)
+        speech_text = "The tech fact of the day is " + random.choice(facts)
         
         handler_input.response_builder.speak(speech_text).set_should_end_session(True)
         return handler_input.response_builder.response
