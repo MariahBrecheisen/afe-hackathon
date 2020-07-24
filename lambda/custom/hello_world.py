@@ -23,7 +23,7 @@ class LaunchRequestHandler(AbstractRequestHandler):
 
     def handle(self, handler_input):
         # type: (HandlerInput) -> Response
-        speech_text = "Welcome, you can say Hello or Help. Which would you like to try?"
+        speech_text = "Welcome to Class Manager! What would you like to do?"
         handler_input.response_builder.speak(speech_text).ask(speech_text)
         return handler_input.response_builder.response
 
@@ -50,7 +50,7 @@ class StartClassIntentHandler(AbstractRequestHandler):
         # type: (HandlerInput) -> Response
         speech_text = "Starting class"
         handler_input.response_builder.speak(speech_text).set_should_end_session(True)
-        return (handler_input.response_builder.response + StartRollCallIntentHandler.handle(self, handler_input))
+        return handler_input.response_builder.response
 
 class StartRollCallIntentHandler(AbstractRequestHandler):
     """Handler for Start Roll Call Intent."""
