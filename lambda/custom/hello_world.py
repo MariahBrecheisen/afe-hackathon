@@ -48,9 +48,9 @@ class StartClassIntentHandler(AbstractRequestHandler):
 
     def handle(self, handler_input):
         # type: (HandlerInput) -> Response
-        speech_text = "Jeff Bezos tried to take apart his bed at 3 years old"
+        speech_text = "Starting class"
         handler_input.response_builder.speak(speech_text).set_should_end_session(True)
-        return handler_input.response_builder.response
+        return (handler_input.response_builder.response + StartRollCallIntentHandler.handle(self, handler_input))
 
 class StartRollCallIntentHandler(AbstractRequestHandler):
     """Handler for Start Roll Call Intent."""
