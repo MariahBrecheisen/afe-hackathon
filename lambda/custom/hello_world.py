@@ -82,7 +82,7 @@ class StateFactOfTheDayIntentHandler(AbstractRequestHandler):
         # type: (HandlerInput) -> Response
         facts = ["Annie V", "Mariah B", "Hannah N", "Acelyn C"]
 
-        speech_text = "Here is the fact of the day: " + random.choice(facts)
+        speech_text = "Here is the fact of the day: "
         
         handler_input.response_builder.speak(speech_text).set_should_end_session(True)
         return handler_input.response_builder.response
