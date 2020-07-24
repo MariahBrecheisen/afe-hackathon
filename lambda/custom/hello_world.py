@@ -41,6 +41,7 @@ class HelloWorldIntentHandler(AbstractRequestHandler):
         handler_input.response_builder.speak(speech_text).set_should_end_session(True)
         return handler_input.response_builder.response
 
+
 class StartClassIntentHandler(AbstractRequestHandler):
     """Handler for Start Class Intent."""
     def can_handle(self, handler_input):
@@ -52,6 +53,7 @@ class StartClassIntentHandler(AbstractRequestHandler):
         speech_text = "Starting class"
         handler_input.response_builder.speak(speech_text).ask(speech_text)
         return handler_input.response_builder.response
+
 
 class StartRollCallIntentHandler(AbstractRequestHandler):
     """Handler for Start Roll Call Intent."""
@@ -73,6 +75,7 @@ class StartRollCallIntentHandler(AbstractRequestHandler):
         handler_input.response_builder.speak(speech_text).ask(speech_text)
         return handler_input.response_builder.response
 
+
 class CaptureRollCallResponseIntentHandler(AbstractRequestHandler):
     """Handler for Capture Roll Call Response Intent."""
     def can_handle(self, handler_input):
@@ -91,6 +94,7 @@ class CaptureRollCallResponseIntentHandler(AbstractRequestHandler):
         handler_input.response_builder.speak(speech_text).ask(speech_text)
         return handler_input.response_builder.response
 
+
 class StateFactOfTheDayIntentHandler(AbstractRequestHandler):
     """Handler for State Fact Of The Day Intent."""
     def can_handle(self, handler_input):
@@ -108,6 +112,7 @@ class StateFactOfTheDayIntentHandler(AbstractRequestHandler):
         
         handler_input.response_builder.speak(speech_text).set_should_end_session(True)
         return handler_input.response_builder.response
+
 
 class HelpIntentHandler(AbstractRequestHandler):
     """Handler for Help Intent."""

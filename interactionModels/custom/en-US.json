@@ -62,10 +62,6 @@
                         {
                             "name": "response",
                             "type": "Roll_Call_Response"
-                        },
-                        {
-                            "name": "month",
-                            "type": "AMAZON.Month"
                         }
                     ],
                     "samples": [
@@ -119,13 +115,6 @@
                             "prompts": {
                                 "elicitation": ""
                             }
-                        },
-                        {
-                            "name": "month",
-                            "type": "AMAZON.Month",
-                            "confirmationRequired": false,
-                            "elicitationRequired": false,
-                            "prompts": {}
                         }
                     ]
                 }
