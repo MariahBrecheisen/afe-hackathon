@@ -40,6 +40,7 @@
                     "name": "StartRollCallIntent",
                     "slots": [],
                     "samples": [
+                        "roll call",
                         "begin roll call",
                         "start roll call"
                     ]
@@ -68,6 +69,27 @@
                     ],
                     "samples": [
                         "{response}"
+                    ]
+                },
+                {
+                    "name": "AddCuriosityIntent",
+                    "slots": [
+                        {
+                            "name": "curiosity",
+                            "type": "AMAZON.SearchQuery"
+                        }
+                    ],
+                    "samples": [
+                        "add {curiosity} to the list",
+                        "I want to know more about {curiosity}",
+                        "add {curiosity} "
+                    ]
+                },
+                {
+                    "name": "PresentRollCallIntent",
+                    "slots": [],
+                    "samples": [
+                        "present roll call"
                     ]
                 }
             ],

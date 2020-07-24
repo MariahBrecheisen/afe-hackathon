@@ -57,11 +57,19 @@ class StartClassIntentHandler(AbstractRequestHandler):
     def handle(self, handler_input):
         # type: (HandlerInput) -> Response
         speech_text = "Starting class"
-        handler_input.response_builder.speak(speech_text).ask(speech_text).addDelegateDirective({
-            name: 'StateFactOfTheDayIntentHandler',
-            confirmationStatus: 'NONE',
-            slots: {}
-        })
+        handler_input.response_builder.speak(speech_text).ask(speech_text)
+        return handler_input.response_builder.response
+
+class PresentRollCallIntentHandler(AbstractRequestHandler):
+    """Handler for Present Roll Call Intent."""
+    def can_handle(self, handler_input):
+        # type: (HandlerInput) -> bool
+        return is_intent_name("PresentRollCallIntent")(handler_input)
+
+    def handle(self, handler_input):
+        # type: (HandlerInput) -> Response
+        speech_text = 'Hannah, are you here?<break time="1s"/>Acelyn?<break time="1s"/>Mariah?<break time="1s"/>Annie?<break time="1s"/>Great! everyones here, lets get started!'
+        handler_input.response_builder.speak(speech_text).set_should_end_session(False)
         return handler_input.response_builder.response
 
 
@@ -156,6 +164,18 @@ class StateFactOfTheDayIntentHandler(AbstractRequestHandler):
         handler_input.response_builder.speak(speech_text).ask(reprompt_text)
         return handler_input.response_builder.response
 
+class AddCuriosityIntentHandler(AbstractRequestHandler):
+    """Handler for Add Curiosity Intent."""
+    def can_handle(self, handler_input):
+        # type: (HandlerInput) -> bool
+        return is_intent_name("AddCuriosityIntent")(handler_input)
+
+    def handle(self, handler_input):
+        # type: (HandlerInput) -> Response
+        speech_text = "Okay I have added it to the Class Curiosity Collection."
+        handler_input.response_builder.speak(speech_text).set_should_end_session(True)
+        return handler_input.response_builder.response
+
 
 class HelpIntentHandler(AbstractRequestHandler):
     """Handler for Help Intent."""
@@ -239,9 +259,11 @@ sb = SkillBuilder()
 sb.add_request_handler(LaunchRequestHandler())
 sb.add_request_handler(HelloWorldIntentHandler())
 sb.add_request_handler(StartClassIntentHandler())
+sb.add_request_handler(PresentRollCallIntentHandler())
 sb.add_request_handler(StartRollCallIntentHandler())
 sb.add_request_handler(CaptureRollCallResponseIntentHandler())
 sb.add_request_handler(StateFactOfTheDayIntentHandler())
+sb.add_request_handler(AddCuriosityIntentHandler())
 sb.add_request_handler(HelpIntentHandler())
 sb.add_request_handler(CancelOrStopIntentHandler())
 sb.add_request_handler(SessionEndedRequestHandler())
