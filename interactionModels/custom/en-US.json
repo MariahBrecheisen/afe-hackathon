@@ -105,6 +105,14 @@
                         "head count",
                         "how many students are here"
                     ]
+                },
+                {
+                    "name": "AddToRosterIntent",
+                    "slots": [],
+                    "samples": [
+                        "add miranda lewis",
+                        "add miranda lewis to roster"
+                    ]
                 }
             ],
             "types": [
