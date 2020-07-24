@@ -63,10 +63,27 @@ class StartRollCallIntentHandler(AbstractRequestHandler):
         # type: (HandlerInput) -> Response
         names = ["Annie V", "Mariah B", "Hannah N", "Acelyn C"]
 
-        speech_text = "Starting roll call"
+        speech_text = 'Starting roll call<break time="1s"/> '
 
-        for i in names:
-            speech_text += " " + i
+        speech_text += names[i] + " ?"
+
+        #for i in names:
+        #    speech_text += " " + i
+        
+        handler_input.response_builder.speak(speech_text).ask(speech_text)
+        return handler_input.response_builder.response
+
+class CaptureRollCallResponseIntentHandler(AbstractRequestHandler):
+    """Handler for Capture Roll Call Response Intent."""
+    def can_handle(self, handler_input):
+        # type: (HandlerInput) -> bool
+        return is_intent_name("CaptureRollCallResponseIntent")(handler_input)
+
+    def handle(self, handler_input):
+        # type: (HandlerInput) -> Response
+        response = slots["response"].value
+        
+        #if response == "present"
         
         handler_input.response_builder.speak(speech_text).ask(speech_text)
         return handler_input.response_builder.response
@@ -84,7 +101,7 @@ class StateFactOfTheDayIntentHandler(AbstractRequestHandler):
                 "The computing industry boasts one of the highest starting salaries for new college graduates.",
                 "A 15-year-old once hacked NASA."]
 
-        speech_text = 'The tech fact of the day is<break time="3s"/> ' + random.choice(facts)
+        speech_text = 'The tech fact of the day is<break time="1s"/> ' + random.choice(facts)
         
         handler_input.response_builder.speak(speech_text).set_should_end_session(True)
         return handler_input.response_builder.response
@@ -172,6 +189,7 @@ sb.add_request_handler(LaunchRequestHandler())
 sb.add_request_handler(HelloWorldIntentHandler())
 sb.add_request_handler(StartClassIntentHandler())
 sb.add_request_handler(StartRollCallIntentHandler())
+sb.add_request_handler(CaptureRollCallResponseIntentHandler())
 sb.add_request_handler(StateFactOfTheDayIntentHandler())
 sb.add_request_handler(HelpIntentHandler())
 sb.add_request_handler(CancelOrStopIntentHandler())

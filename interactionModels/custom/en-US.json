@@ -55,9 +55,50 @@
                 {
                     "name": "AMAZON.NavigateHomeIntent",
                     "samples": []
+                },
+                {
+                    "name": "CaptureRollCallResponseIntent",
+                    "slots": [
+                        {
+                            "name": "response",
+                            "type": "Roll_Call_Responses"
+                        }
+                    ],
+                    "samples": [
+                        "{response}"
+                    ]
                 }
             ],
-            "types": []
+            "types": [
+                {
+                    "name": "Roll_Call_Response",
+                    "values": [
+                        {
+                            "id": "NOT_PRESENT",
+                            "name": {
+                                "value": "not present",
+                                "synonyms": [
+                                    "no",
+                                    "tardy",
+                                    "late",
+                                    "absent",
+                                    "not here"
+                                ]
+                            }
+                        },
+                        {
+                            "id": "PRESENT",
+                            "name": {
+                                "value": "present",
+                                "synonyms": [
+                                    "yes",
+                                    "here"
+                                ]
+                            }
+                        }
+                    ]
+                }
+            ]
         }
     }
 }
