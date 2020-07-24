@@ -61,7 +61,11 @@
                     "slots": [
                         {
                             "name": "response",
-                            "type": "Roll_Call_Responses"
+                            "type": "Roll_Call_Response"
+                        },
+                        {
+                            "name": "month",
+                            "type": "AMAZON.Month"
                         }
                     ],
                     "samples": [
@@ -99,6 +103,34 @@
                     ]
                 }
             ]
+        },
+        "dialog": {
+            "intents": [
+                {
+                    "name": "CaptureRollCallResponseIntent",
+                    "confirmationRequired": false,
+                    "prompts": {},
+                    "slots": [
+                        {
+                            "name": "response",
+                            "type": "Roll_Call_Response",
+                            "confirmationRequired": false,
+                            "elicitationRequired": true,
+                            "prompts": {
+                                "elicitation": ""
+                            }
+                        },
+                        {
+                            "name": "month",
+                            "type": "AMAZON.Month",
+                            "confirmationRequired": false,
+                            "elicitationRequired": false,
+                            "prompts": {}
+                        }
+                    ]
+                }
+            ],
+            "delegationStrategy": "ALWAYS"
         }
     }
 }
