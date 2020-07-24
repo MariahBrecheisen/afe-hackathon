@@ -32,14 +32,16 @@
                     "name": "StartClassIntent",
                     "slots": [],
                     "samples": [
-                        "start class"
+                        "start class",
+                        "begin class"
                     ]
                 },
                 {
                     "name": "StartRollCallIntent",
                     "slots": [],
                     "samples": [
-                        "begin roll call"
+                        "begin roll call",
+                        "start roll call"
                     ]
                 },
                 {
