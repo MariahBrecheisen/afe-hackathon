@@ -53,6 +53,19 @@ class HelloHannahIntentHandler(AbstractRequestHandler):
         return handler_input.response_builder.response
 
 
+class HelloAnnieIntentHandler(AbstractRequestHandler):
+    """Handler for Hello World Intent."""
+    def can_handle(self, handler_input):
+        # type: (HandlerInput) -> bool
+        return is_intent_name("HelloWorldIntent")(handler_input)
+
+    def handle(self, handler_input):
+        # type: (HandlerInput) -> Response
+        speech_text = "Hello Annie!"
+        handler_input.response_builder.speak(speech_text).set_should_end_session(True)
+        return handler_input.response_builder.response
+
+
 class HelpIntentHandler(AbstractRequestHandler):
     """Handler for Help Intent."""
     def can_handle(self, handler_input):
@@ -135,6 +148,7 @@ sb = SkillBuilder()
 sb.add_request_handler(LaunchRequestHandler())
 sb.add_request_handler(HelloWorldIntentHandler())
 sb.add_request_handler(HelloHannahIntentHandler())
+sb.add_request_handler(HelloAnnieIntentHandler())
 sb.add_request_handler(HelpIntentHandler())
 sb.add_request_handler(CancelOrStopIntentHandler())
 sb.add_request_handler(SessionEndedRequestHandler())
