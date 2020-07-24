@@ -67,7 +67,7 @@ class StartRollCallIntentHandler(AbstractRequestHandler):
 
         speech_text = 'Starting roll call<break time="1s"/> '
 
-        speech_text += names[i] + " ?"
+        speech_text += names[0] + " ?"
 
         #for i in names:
         #    speech_text += " " + i
