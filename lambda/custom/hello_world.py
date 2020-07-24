@@ -65,17 +65,23 @@ class StartRollCallIntentHandler(AbstractRequestHandler):
         # type: (HandlerInput) -> Response
         names = ["Annie V", "Mariah B", "Hannah N", "Acelyn C"]
 
+        slots = handler_input.request_envelope.request.intent.slots
+        response = slots["response"].resolutions.resolutions_per_authority[0].values[0].value.name
+
         speech_text = 'Starting roll call<break time="1s"/> '
 
-        speech_text += names[0] + " ?"
-
-        #for i in names:
-        #    speech_text += " " + i
+        for i in names:
+            speech_text += i + " ?"
+            if response == "present":
+                speech_text = "Hi"
+            else:
+                speech_text = "Oooo someone's not here"
         
         handler_input.response_builder.speak(speech_text).ask(speech_text)
         return handler_input.response_builder.response
 
 
+'''
 class CaptureRollCallResponseIntentHandler(AbstractRequestHandler):
     """Handler for Capture Roll Call Response Intent."""
     def can_handle(self, handler_input):
@@ -100,6 +106,7 @@ class CaptureRollCallResponseIntentHandler(AbstractRequestHandler):
         
         handler_input.response_builder.speak(speech_text).ask(speech_text)
         return handler_input.response_builder.response
+'''
 
 
 class StateFactOfTheDayIntentHandler(AbstractRequestHandler):
@@ -204,7 +211,7 @@ sb.add_request_handler(LaunchRequestHandler())
 sb.add_request_handler(HelloWorldIntentHandler())
 sb.add_request_handler(StartClassIntentHandler())
 sb.add_request_handler(StartRollCallIntentHandler())
-sb.add_request_handler(CaptureRollCallResponseIntentHandler())
+#sb.add_request_handler(CaptureRollCallResponseIntentHandler())
 sb.add_request_handler(StateFactOfTheDayIntentHandler())
 sb.add_request_handler(HelpIntentHandler())
 sb.add_request_handler(CancelOrStopIntentHandler())

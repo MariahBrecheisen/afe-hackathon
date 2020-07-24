@@ -38,8 +38,14 @@
                 },
                 {
                     "name": "StartRollCallIntent",
-                    "slots": [],
+                    "slots": [
+                        {
+                            "name": "response",
+                            "type": "Roll_Call_Response"
+                        }
+                    ],
                     "samples": [
+                        "{response}",
                         "begin roll call",
                         "start roll call"
                     ]
@@ -57,18 +63,6 @@
                 {
                     "name": "AMAZON.NavigateHomeIntent",
                     "samples": []
-                },
-                {
-                    "name": "CaptureRollCallResponseIntent",
-                    "slots": [
-                        {
-                            "name": "response",
-                            "type": "Roll_Call_Response"
-                        }
-                    ],
-                    "samples": [
-                        "{response}"
-                    ]
                 }
             ],
             "types": [
@@ -101,38 +95,6 @@
                     ]
                 }
             ]
-        },
-        "dialog": {
-            "intents": [
-                {
-                    "name": "CaptureRollCallResponseIntent",
-                    "confirmationRequired": false,
-                    "prompts": {},
-                    "slots": [
-                        {
-                            "name": "response",
-                            "type": "Roll_Call_Response",
-                            "confirmationRequired": false,
-                            "elicitationRequired": true,
-                            "prompts": {
-                                "elicitation": "Elicit.Slot.710307361258.442501568507"
-                            }
-                        }
-                    ]
-                }
-            ],
-            "delegationStrategy": "ALWAYS"
-        },
-        "prompts": [
-            {
-                "id": "Elicit.Slot.710307361258.442501568507",
-                "variations": [
-                    {
-                        "type": "PlainText",
-                        "value": "Is the student here or not here?"
-                    }
-                ]
-            }
-        ]
+        }
     }
 }
