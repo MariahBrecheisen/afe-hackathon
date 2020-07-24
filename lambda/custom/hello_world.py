@@ -79,7 +79,7 @@ class PresentRollCallIntentHandler(AbstractRequestHandler):
         handler_input.response_builder.speak(speech_text).set_should_end_session(False)
         return handler_input.response_builder.response
         
- class AddToRosterIntentHandler(AbstractRequestHandler):
+class AddToRosterIntentHandler(AbstractRequestHandler):
     """Handler for Add to Roster Intent."""
     def can_handle(self, handler_input):
         # type: (HandlerInput) -> bool
