@@ -28,7 +28,7 @@ class LaunchRequestHandler(AbstractRequestHandler):
 
     def handle(self, handler_input):
         # type: (HandlerInput) -> Response
-        speech_text = "Welcome to Class Manager! You can state fact of the day or begin roll call. What would you like to do?"
+        speech_text = "Welcome to Class Manager! You can start class, state fact of the day, or begin roll call. Which would you like to do?"
         handler_input.response_builder.speak(speech_text).ask(speech_text)
         return handler_input.response_builder.response
 
@@ -55,6 +55,15 @@ class StartClassIntentHandler(AbstractRequestHandler):
     def handle(self, handler_input):
         # type: (HandlerInput) -> Response
         speech_text = "Starting class"
+        facts = ["The first programmer was a woman named Ada Lovelace. She's famous for working on the Analytical Engine.", 
+                "HP, Microsoft, Apple, and Amazon all started in garages.",
+                "The computing industry boasts one of the highest starting salaries for new college graduates.",
+                "A 15-year-old once hacked NASA."]
+
+        speech_text += '<break time="1s"/>The tech fact of the day is<break time="1s"/> ' + random.choice(facts)
+        speech_text += '<break time="1s"/>Roll call<break time="1s"/>Hannah, are you here? <break time="1s"/>Ace lyn? <break time="1s"/> Mariah?<break time="1s"/> Annie?<break time="1s"/>Great! everyones here, lets get started!'
+
+
         handler_input.response_builder.speak(speech_text).ask(speech_text)
         return handler_input.response_builder.response
 
@@ -87,6 +96,7 @@ class StartRollCallIntentHandler(AbstractRequestHandler):
 
     def handle(self, handler_input):
         # type: (HandlerInput) -> Response
+
         names = self.readS3()
         #names = ["Annie V", "Mariah B", "Acelyn C", "Hannah N"]
 
