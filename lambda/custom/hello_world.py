@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 # This sample demonstrates handling intents from an Alexa skill using the Alexa Skills Kit SDK.
+import random
 import logging
 
 from ask_sdk_core.skill_builder import SkillBuilder
@@ -10,8 +11,6 @@ from ask_sdk_core.utils import is_request_type, is_intent_name
 from ask_sdk_core.handler_input import HandlerInput
 
 from ask_sdk_model import Response
-
-import random
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
@@ -82,7 +81,7 @@ class StateFactOfTheDayIntentHandler(AbstractRequestHandler):
         # type: (HandlerInput) -> Response
         facts = ["Annie V", "Mariah B", "Hannah N", "Acelyn C"]
 
-        speech_text = "Here is the fact of the day: "
+        speech_text = "Here is the fact of the day: " + random.choice(facts)
         
         handler_input.response_builder.speak(speech_text).set_should_end_session(True)
         return handler_input.response_builder.response
