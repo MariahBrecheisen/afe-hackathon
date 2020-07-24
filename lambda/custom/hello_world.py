@@ -91,6 +91,7 @@ class StartRollCallIntentHandler(AbstractRequestHandler):
     def handle(self, handler_input):
         # type: (HandlerInput) -> Response
         #names = self.readS3()
+        names = ["Annie V", "Mariah B", "Acelyn C", "Hannah N"]
 
         #slots = handler_input.request_envelope.request.intent.slots
         #response = slots["response"].resolutions.resolutions_per_authority[0].values[0].value.name
