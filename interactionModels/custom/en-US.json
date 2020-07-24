@@ -1,7 +1,7 @@
 {
     "interactionModel": {
         "languageModel": {
-            "invocationName": "hello python",
+            "invocationName": "class manager",
             "intents": [
                 {
                     "name": "AMAZON.CancelIntent",
@@ -27,6 +27,24 @@
                         "say hello world",
                         "say hello"
                     ]
+                },
+                {
+                    "name": "StartClassIntent",
+                    "slots": [],
+                    "samples": [
+                        "start class"
+                    ]
+                },
+                {
+                    "name": "StartRollCallIntent",
+                    "slots": [],
+                    "samples": [
+                        "start roll call"
+                    ]
+                },
+                {
+                    "name": "AMAZON.NavigateHomeIntent",
+                    "samples": []
                 }
             ],
             "types": []
