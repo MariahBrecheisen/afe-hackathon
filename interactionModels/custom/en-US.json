@@ -46,6 +46,14 @@
                     ]
                 },
                 {
+                    "name": "AddToRosterIntent",
+                    "slots": [],
+                    "samples": [
+                        "add miranda lewis to roster",
+                        "add miranda lewis"
+                    ]
+                },
+                {
                     "name": "StateFactOfTheDayIntent",
                     "slots": [],
                     "samples": [
