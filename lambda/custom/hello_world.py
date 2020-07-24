@@ -11,6 +11,8 @@ from ask_sdk_core.handler_input import HandlerInput
 
 from ask_sdk_model import Response
 
+import random
+
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
 
@@ -66,6 +68,21 @@ class StartRollCallIntentHandler(AbstractRequestHandler):
 
         for i in names:
             speech_text += " " + i
+        
+        handler_input.response_builder.speak(speech_text).ask(speech_text)
+        return handler_input.response_builder.response
+
+class StateFactOfTheDayIntentHandler(AbstractRequestHandler):
+    """Handler for State Fact Of The Day Intent."""
+    def can_handle(self, handler_input):
+        # type: (HandlerInput) -> bool
+        return is_intent_name("StateFactOfTheDayIntent")(handler_input)
+
+    def handle(self, handler_input):
+        # type: (HandlerInput) -> Response
+        facts = ["Annie V", "Mariah B", "Hannah N", "Acelyn C"]
+
+        speech_text = "Here is the fact of the day: " + random.choice(facts)
         
         handler_input.response_builder.speak(speech_text).set_should_end_session(True)
         return handler_input.response_builder.response
@@ -153,6 +170,7 @@ sb.add_request_handler(LaunchRequestHandler())
 sb.add_request_handler(HelloWorldIntentHandler())
 sb.add_request_handler(StartClassIntentHandler())
 sb.add_request_handler(StartRollCallIntentHandler())
+sb.add_request_handler(StateFactOfTheDayIntentHandler())
 sb.add_request_handler(HelpIntentHandler())
 sb.add_request_handler(CancelOrStopIntentHandler())
 sb.add_request_handler(SessionEndedRequestHandler())

@@ -43,6 +43,14 @@
                     ]
                 },
                 {
+                    "name": "StateFactOfTheDayIntent",
+                    "slots": [],
+                    "samples": [
+                        "state the fact of the day",
+                        "state fact of the day"
+                    ]
+                },
+                {
                     "name": "AMAZON.NavigateHomeIntent",
                     "samples": []
                 }
