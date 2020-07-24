@@ -113,13 +113,24 @@
                             "confirmationRequired": false,
                             "elicitationRequired": true,
                             "prompts": {
-                                "elicitation": ""
+                                "elicitation": "Elicit.Slot.710307361258.442501568507"
                             }
                         }
                     ]
                 }
             ],
             "delegationStrategy": "ALWAYS"
-        }
+        },
+        "prompts": [
+            {
+                "id": "Elicit.Slot.710307361258.442501568507",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "Is the student here or not here?"
+                    }
+                ]
+            }
+        ]
     }
 }
