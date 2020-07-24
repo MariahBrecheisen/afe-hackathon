@@ -3,6 +3,10 @@
 # This sample demonstrates handling intents from an Alexa skill using the Alexa Skills Kit SDK.
 import random
 import logging
+import boto3
+import csv
+from credentials import aws_access_key_id, aws_secret_access_key
+import re
 
 from ask_sdk_core.skill_builder import SkillBuilder
 from ask_sdk_core.dispatch_components import AbstractRequestHandler
@@ -56,6 +60,21 @@ class StartClassIntentHandler(AbstractRequestHandler):
 
 
 class StartRollCallIntentHandler(AbstractRequestHandler):
+    
+    def readS3(self):
+        session = boto3.Session(
+                aws_access_key_id=aws_access_key_id,
+                aws_secret_access_key=aws_secret_access_key,
+                region_name='us-east-1')
+                    
+        s3 = session.resource('s3')
+        bucket = s3.Bucket('aws-codestar-us-east-1-186841075729-afe-hackathon-pipe') 
+        bucket_obj = bucket.Object(key='test/PracticeFAQs.csv') 
+        response = bucket_obj.get()
+        lines = response['Body'].read().decode('utf-8') 
+        names = re.split('[\r\n]+', lines)
+        return names
+    
     """Handler for Start Roll Call Intent."""
     def can_handle(self, handler_input):
         # type: (HandlerInput) -> bool
@@ -63,19 +82,22 @@ class StartRollCallIntentHandler(AbstractRequestHandler):
 
     def handle(self, handler_input):
         # type: (HandlerInput) -> Response
-        names = ["Annie V", "Mariah B", "Hannah N", "Acelyn C"]
+        names = self.readS3()
 
         slots = handler_input.request_envelope.request.intent.slots
         response = slots["response"].resolutions.resolutions_per_authority[0].values[0].value.name
 
-        speech_text = 'Starting roll call<break time="1s"/> '
+        speech_text = 'Starting roll call<break time="1s"/> ' + names[0] + ' ?'
 
+        '''
         for i in names:
-            speech_text += i + " ?"
-            if response == "present":
-                speech_text = "Hi"
-            else:
-                speech_text = "Oooo someone's not here"
+            if (len(i) > 0): 
+                speech_text += i + " ?"
+                if response == "present":
+                    speech_text = "Hi"
+                else:
+                    speech_text = "Oooo someone's not here"
+        '''
         
         handler_input.response_builder.speak(speech_text).ask(speech_text)
         return handler_input.response_builder.response
