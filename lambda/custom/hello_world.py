@@ -40,52 +40,15 @@ class HelloWorldIntentHandler(AbstractRequestHandler):
         handler_input.response_builder.speak(speech_text).set_should_end_session(True)
         return handler_input.response_builder.response
 
-class HelloHannahIntentHandler(AbstractRequestHandler):
-    """Handler for Hello World Intent."""
+class StartClassIntentHandler(AbstractRequestHandler):
+    """Handler for Start Class Intent."""
     def can_handle(self, handler_input):
         # type: (HandlerInput) -> bool
-        return is_intent_name("HelloWorldIntent")(handler_input)
+        return is_intent_name("StartClassIntent")(handler_input)
 
     def handle(self, handler_input):
         # type: (HandlerInput) -> Response
-        speech_text = "Hello Hannah!"
-        handler_input.response_builder.speak(speech_text).set_should_end_session(True)
-        return handler_input.response_builder.response
-
-
-class HelloAnnieIntentHandler(AbstractRequestHandler):
-    """Handler for Hello World Intent."""
-    def can_handle(self, handler_input):
-        # type: (HandlerInput) -> bool
-        return is_intent_name("HelloWorldIntent")(handler_input)
-
-    def handle(self, handler_input):
-        # type: (HandlerInput) -> Response
-        speech_text = "Hello Annie!"
-        handler_input.response_builder.speak(speech_text).set_should_end_session(True)
-        return handler_input.response_builder.response
-
-class HelloAnnieIntentHandler(AbstractRequestHandler):
-    """Handler for Hello World Intent."""
-    def can_handle(self, handler_input):
-        # type: (HandlerInput) -> bool
-        return is_intent_name("HelloWorldIntent")(handler_input)
-
-    def handle(self, handler_input):
-        # type: (HandlerInput) -> Response
-        speech_text = "Hello Annie!"
-        handler_input.response_builder.speak(speech_text).set_should_end_session(True)
-        return handler_input.response_builder.response
-
-class HelloAcelynIntentHandler(AbstractRequestHandler):
-    """Handler for Hello World Intent."""
-    def can_handle(self, handler_input):
-        # type: (HandlerInput) -> bool
-        return is_intent_name("HelloWorldIntent")(handler_input)
-
-    def handle(self, handler_input):
-        # type: (HandlerInput) -> Response
-        speech_text = "Hello Acelyn!"
+        speech_text = "Jeff Bezos tried to take apart his bed at 3 years old"
         handler_input.response_builder.speak(speech_text).set_should_end_session(True)
         return handler_input.response_builder.response
 
